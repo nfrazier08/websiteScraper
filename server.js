@@ -39,7 +39,7 @@ app.use(express.static("public"));
 const db = require('./models');
 
 app.engine('handlebars', exphbs({ defaultLayout: "main" }));
-app.set('view-engine', 'exphbs');
+app.set('view engine', 'handlebars');
 
 //Require in routes
 require("./routing/routes.js")(app);

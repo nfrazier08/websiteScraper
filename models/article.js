@@ -8,6 +8,8 @@ var ArticleSchema = new Schema({
     headline: {
         type: String, 
         trim: true, 
+        //Not supposed to have same article in the database twice, but when I add this, I keep getting this error:
+            //E11000 duplicate key error collection: scraper.articles index: headline_1 dup key: { : null }',
         // unique: true
     },
     summary: {
