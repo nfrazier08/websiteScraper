@@ -1,4 +1,4 @@
-const db = require("../models");
+// const db = require("../models");
 
 // Require request and cheerio. This makes the scraping possible
 const request = require("request");
