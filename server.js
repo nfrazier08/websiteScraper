@@ -24,15 +24,15 @@ app.use(bodyParser.text());
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
 
-// Database configuration
-const databaseUrl = "scraper";
-const collections = ["scrapedData"];
+// // Database configuration
+// const databaseUrl = "scraper";
+// const collections = ["scrapedData"];
 
 //Mongoose Config
 if(process.env.MONGODB_URI){
   mongoose.connect('mongodb://heroku_hfm36lpr:9ncqjo8h993pg75fee1cnr1oc3@ds119476.mlab.com:19476/heroku_hfm36lpr')
 } else {
-  mongoose.connect('mongodb://localhost/scraper')
+  mongoose.connect('mongodb://localhost/scraper');
 }
 
 var connection = mongoose.connection;
