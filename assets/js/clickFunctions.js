@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     $("#scrape").on("click", function(){
         // event.preventDefault();        
-        console.log(`scrapping..`)
+       console.log('is it logging???')
     })
 
 
