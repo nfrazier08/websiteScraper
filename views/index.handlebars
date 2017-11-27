@@ -13,14 +13,19 @@
 
     <hr>
 
-    <div class="row">
-        <div class="col-md-6">
-            <div id="headline"></div>
-            <div id="section"></div>
-            <div id="link"></div>
-            <div id="summary"></div>            
+    {{#each Article}}
+        <div class="row">
+            <div class="col-md-6">
+                <div id="headline">{{headline}}</div>
+                <div id="section"></div>
+                <div id="link"></div>
+                <div id="summary"></div>            
+            </div>
         </div>
-    </div>
+    {{/each}}
+    
+
+    <hr>
 
 
 

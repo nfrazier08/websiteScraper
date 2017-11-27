@@ -24,6 +24,8 @@ app.use(bodyParser.text());
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
 
+mongoose.Promise = Promise;
+
 // // Database configuration
 // const databaseUrl = "scraper";
 // const collections = ["scrapedData"];

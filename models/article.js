@@ -19,11 +19,7 @@ var ArticleSchema = new Schema({
     articleLink: {
         type: String,
         trim: true        
-    }, 
-    photoLink: {
-        type: String, 
-        trim: true
-    }, 
+    },     
     websiteSection: {
         type: String,
         trim: true
