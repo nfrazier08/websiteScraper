@@ -9,7 +9,7 @@ const request = require("request");
 const cheerio = require("cheerio");
 const logger = require("morgan");
 const mongoose = require("mongoose");
-const axios = require("axios");
+var axios = require("axios");
 
 // Initialize Express
 const app = express();
@@ -24,11 +24,17 @@ app.use(bodyParser.text());
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
 
-mongoose.Promise = Promise;
+//err handling
+app.use(function(err, req, res, next){
+  res.send({error: err.message})
+})
 
 // // Database configuration
 // const databaseUrl = "scraper";
 // const collections = ["scrapedData"];
+
+mongoose.Promise = global.Promise;
+
 
 //Mongoose Config
 if(process.env.MONGODB_URI){
@@ -54,6 +60,8 @@ app.set('view engine', 'handlebars');
 
 //Require in routes
 require("./routing/routes.js")(app);
+
+
 
 // Listen on port 3000
 app.listen(PORT, function() {
