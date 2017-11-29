@@ -10,10 +10,12 @@ var axios = require("axios");
 
 module.exports = function (app) {
 
+    //Homepage route
     app.get('/', function (req, res) {
         res.render("index", { title: "home" })
     })
 
+    //Route to display all articles scraped 
     app.get('/view', function (req, res){
         db.Article.find({})
         // .populate
@@ -23,8 +25,6 @@ module.exports = function (app) {
             res.render("viewArticles", {article: articles})
         })        
     })
-
-
 
     //Route to scrape NPR Articles
     app.get('/scrape', function (req, res, next) {

@@ -11,23 +11,67 @@
         <div class="row">
             <div class="col-md-6">
                 <div id="headline">
-                    <p><h4>Headline:</h4></p>
-                    <p><h5>{{headline}}</h5></p>
+                    <a href = "{{articleLink}}" target="new">{{headline}}</a>
                 </div>
                 <div id="summary">
                     <p><h4>Summary:</h4></p>
                     <p><h5>{{summary}}</h5></p>
-                </div> 
-                <div id="link">
-                     <p><h4>Article Link:</h4></p>
-                    <p><h5>{{articleLink}}</h5></p>
-                </div>
+                </div>                 
                 <div id="summary">
                     <p><h4>Website Section:</h4></p>
                     <p><h5>{{websiteSection}}</h5></p>
-                </div>            
+                </div>
+                 <button id="writeNote" class="btn btn-primary"  thisId="{{_id}}" data-toggle="modal" data-target="#addNoteModal">Add Note to this Article</button>
+                <button id="viewNotes" class="btn btn-success" thisId="{{_id}}" data-toggle="modal" data-target="#viewNoteModal">View Notes for this Article</button>
+                <button id="delete" class="btn btn-danger" thisId="{{_id}}">Delete this Article</button>          
             </div>
-        </div>
+        </div>        
+        <hr>
     {{/each}}    
 
-<hr id="articleBorder">
+    <!-- Add Note Modal -->
+    <div class="modal fade" id="addNoteModal" tabindex="-1" role="dialog" aria-labelledby="addNote" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="addNote">Add Note</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <!--Text Area-->
+                <form>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Write</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                </form>
+            <!--End of text area-->
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="submitNote" data-dismiss="modal">Submit Note</button>            
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- View Note Modal -->
+    <div class="modal fade" id="viewNoteModal" tabindex="-1" role="dialog" aria-labelledby="viewNote" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="viewNote">Read Notes</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+           ....
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>            
+        </div>
+        </div>
+    </div>
+    </div>
