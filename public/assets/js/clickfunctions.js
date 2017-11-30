@@ -65,10 +65,17 @@ $(document).ready(function() {
         })
     })
 
+
     $(".delete").on("click", function(){
         console.log("let's delete!")
         const thisDeleteId = $(this).attr('targetId')
         console.log(thisDeleteId)
+
+        $.ajax({
+            type: "DELETE", 
+            url: `/delete/${thisDeleteId}`,
+            success: location.reload()
+        })
     })
    
    
