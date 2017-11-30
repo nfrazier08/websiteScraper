@@ -56,10 +56,10 @@ $(document).ready(function() {
             success: function(notes){                                
                 notes.notes.forEach(note => {
                     console.log("NOTES >>>>")
+                    console.log(note)
                     console.log(note.body)
-                    $(".noteText").append(note.body )
+                    $(".noteText").append(note.body + "\n" + "<span class='glyphicon glyphicon-remove-circle deleteNote' id='note.id' aria-hidden='true'></span>")
                     $(".noteText").append("<hr>")
-
                 });
             }
         })
