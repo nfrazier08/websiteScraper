@@ -5,7 +5,7 @@
         </div>
     </div>
  
- <hr>
+    <hr>
 
     {{#each article}}
         <div class="row">
@@ -21,14 +21,15 @@
                     <p><h4>Website Section:</h4></p>
                     <p><h5>{{websiteSection}}</h5></p>
                 </div>
-                 <button id="writeNote" class="btn btn-primary"  thisId="{{_id}}" data-toggle="modal" data-target="#addNoteModal">Add Note to this Article</button>
-                <button id="viewNotes" class="btn btn-success" thisId="{{_id}}" data-toggle="modal" data-target="#viewNoteModal">View Notes for this Article</button>
-                <button id="delete" class="btn btn-danger" thisId="{{_id}}">Delete this Article</button>          
+                    <button class="btn btn-primary writeNote"  targetId="{{_id}}" data-toggle="modal" data-target="#addNoteModal">Add Note to this Article</button>
+                    <button class="btn btn-success viewNotes" targetId="{{_id}}" data-toggle="modal" data-target="#viewNoteModal">View Notes for this Article</button>
+                    <button class="btn btn-danger delete" targetId="{{_id}}"> Delete this Article</button>          
             </div>
         </div>        
         <hr>
-    {{/each}}    
+    {{/each}} 
 
+    {{#each article}}
     <!-- Add Note Modal -->
     <div class="modal fade" id="addNoteModal" tabindex="-1" role="dialog" aria-labelledby="addNote" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -41,17 +42,15 @@
         </div>
         <div class="modal-body">
             <!--Text Area-->
-                <form>
+                <form method="post">
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Write</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea class="form-control" id="noteText" rows="3"></textarea>
                     </div>
+                    <button type="button" class="btn btn-secondary submitNote" targetId="{{_id}}" data-dismiss="modal">Submit Note</button>
                 </form>
             <!--End of text area-->
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" id="submitNote" data-dismiss="modal">Submit Note</button>            
-        </div>
+        </div>        
         </div>
     </div>
     </div>
@@ -61,17 +60,37 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="viewNote">Read Notes</h5>
+            <h5 class="modal-title" id="viewNote" targetId="{{_id}}">Read Notes</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
-           ....
+           <p class="noteText"></p>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>            
         </div>
         </div>
     </div>
+    </div>
+
+    {{/each}}  
+
+    <!--This is the addedModal modal-->
+    <div class="modal fade bs-example-modal-sm text-center" id="addedModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <h2 id="addedMessage"></h2>       
+            </div>
+        </div>
+    </div>
+
+    <!--This is the alertModal modal-->
+    <div class="modal fade bs-example-modal-sm text-center" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <h2 id="alertMessage"></h2>       
+            </div>
+        </div>
     </div>

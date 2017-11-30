@@ -5,8 +5,6 @@ const express = require("express");
 const request = require("request");
 const logger = require("morgan");
 const cheerio = require("cheerio");
-var axios = require("axios");
-
 
 module.exports = function (app) {
 
@@ -18,19 +16,57 @@ module.exports = function (app) {
     //Route to display all articles scraped 
     app.get('/view', function (req, res){
         db.Article.find({})
-        // .populate
+        .populate('notes')
         .then((articles) => {
             console.log("am i here yet??")
             console.log(articles)
             res.render("viewArticles", {article: articles})
         })        
     })
+    
+    //Delete this article
+    app.delete('/delete/:id', function(req, res){
+        console.log("LEtslk hks")
+    })
 
+    //Route to add note
+    app.post("/addNote/:id", function(req, res){             
+        //create a new note and pass the req.body to the entry
+        console.log(req.body)
+        db.Note
+            .create({body: req.body.addThisNote})
+            .then(function(dbNote){                   
+                console.log(dbNote)       
+               return db.Article.findOneAndUpdate( 
+                {_id: req.params.id}, 
+                { $push: { notes: dbNote._id } }, 
+                {new: true});
+            })
+            .then(function(dbArticle){                       
+                console.log(dbArticle)
+                res.json(dbArticle);
+            })
+            .catch(function(err){
+                // If an error occurred, send it to the client
+                res.json(err);
+            });
+        });
+    
+    //Route to find all notes for an article
+    app.get('/readNotes/:id', function(req, res){        
+        db.Article.findOne({_id: req.params.id})
+        .populate("notes")
+        .then(function(dbArticle){
+            res.json(dbArticle);
+        })
+        .catch(function(err){
+            res.json(err);
+        });
+    });
+    
     //Route to scrape NPR Articles
     app.get('/scrape', function (req, res, next) {
-        // First, we grab the body of the html with request
-        // error, response, html
-
+        // First, we grab the body of the html with request 
         const createArticlesPromises = [];
         request("https://www.npr.org/", function (error, response, html) {
             // Then, we load that into cheerio and save it to $ for a shorthand selector
