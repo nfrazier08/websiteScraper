@@ -55,16 +55,32 @@ $(document).ready(function() {
             url: `/readNotes/${thisArticleId}`, 
             success: function(notes){                                
                 notes.notes.forEach(note => {
-                    console.log("NOTES >>>>")
-                    console.log(note)
-                    console.log(note.body)
-                    $(".noteText").append(note.body + "\n" + "<span class='glyphicon glyphicon-remove-circle deleteNote' id='note.id' aria-hidden='true'></span>")
+                    console.log("NOTES ID >>>>")
+                    const noteId = note._id;
+                    console.log(note._id)
+                    // console.log(note.body)                   
+                    $(".noteText").append(note.body + "\n" + `<button type='button' class='btn btn-default deleteNote' id=${noteId} aria-label='Left Align'><span class='glyphicon glyphicon-remove-circle' aria-hidden='true'></span></button>`)
                     $(".noteText").append("<hr>")
                 });
             }
         })
     })
 
+    //To click on dynamically created events => do a listener on the parent and the child is the dynamic element
+    // $("#parent").on("click", ".child", function(event){})
+
+
+    $(".noteText").on("click", ".deleteNote", function(){
+        console.log("can I?")
+        const noteDeleteId = $(this).attr('id')
+        console.log(noteDeleteId);
+        
+        $.ajax({
+            type:"DELETE", 
+            url: `/delete/${noteDeleteId}`,
+            success: location.reload()
+        })
+    })
 
     $(".delete").on("click", function(){
         console.log("let's delete!")

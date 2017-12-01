@@ -36,7 +36,15 @@ module.exports = function (app) {
         console.log(req.params.id)
         db.Article.findByIdAndRemove(req.params.id)
         .then(function(){
-            res.json("success")
+            console.log("delete article success")
+        })
+    })
+
+    //Delete this article
+    app.delete("/deleteNote/:id", function(req, res){
+        db.Note.findByIdAndRemove(req.params.id)
+        .then(function(){
+            console.log("delete note success")
         })
     })
 
