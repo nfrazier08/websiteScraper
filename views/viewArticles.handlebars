@@ -1,4 +1,5 @@
  
+    <div class="container">
     <div class="row">      
         <div class="col-md-6">
             <h2>Recent NPR Articles</h2>            
@@ -17,7 +18,7 @@
                     <p><h4>Summary:</h4></p>
                     <p><h5>{{summary}}</h5></p>
                 </div>                 
-                <div id="summary">
+                <div id="section">
                     <p><h4>Website Section:</h4></p>
                     <p><h5>{{websiteSection}}</h5></p>
                 </div>
@@ -28,6 +29,7 @@
         </div>        
         <hr>
     {{/each}} 
+</div>
 
     {{#each article}}
     <!-- Add Note Modal -->

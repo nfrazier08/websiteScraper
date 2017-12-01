@@ -77,7 +77,7 @@ $(document).ready(function() {
         
         $.ajax({
             type:"DELETE", 
-            url: `/delete/${noteDeleteId}`,
+            url: `/deleteNote/${noteDeleteId}`,
             success: location.reload()
         })
     })
