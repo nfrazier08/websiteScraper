@@ -24,13 +24,6 @@ module.exports = function (app) {
         })        
     })
     
-    
-    // // Show how to delete an entry with db.[COLLECTION_NAME].remove()
-    // db.places.remove({"country":"Morocco"})
-
-    // // Show how to empty a collection with db.[COLLECTION_NAME].remove()
-    // db.places.remove({})
-
     //Delete this article
     app.delete('/delete/:id', function(req, res){
         console.log(req.params.id)

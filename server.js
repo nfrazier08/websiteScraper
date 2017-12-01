@@ -42,6 +42,7 @@ if(process.env.MONGODB_URI){
 } else {
   mongoose.connect('mongodb://localhost/scraper');
 }
+// heroku_hfm36lpr
 
 var connection = mongoose.connection;
 connection.on('error', function(err){
