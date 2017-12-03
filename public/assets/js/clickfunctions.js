@@ -44,6 +44,8 @@ $(document).ready(function() {
                 $("#addedMessage").html("You've successfully added a note");
             }
         })
+        
+        $("#noteText").val("")
     })
 
     $(".viewNotes").on("click", function(){
