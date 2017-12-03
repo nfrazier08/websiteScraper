@@ -54,14 +54,16 @@ $(document).ready(function() {
             url: `/readNotes/${thisArticleId}`, 
             success: function(notes){                                
                 notes.notes.forEach(note => {
-                    // console.log("NOTES ID >>>>")
+                    // console.log("NOTES ID OBJ>>>>")
                     console.log(notes)
                     const noteId = note._id;
                     console.log(note._id)
                     // console.log(note.body)                   
-                    $(".noteText").append(note.body + " " + `<button type='button' class='btn btn-default deleteNote' id=${noteId} aria-label='Left Align'><span class='glyphicon glyphicon-remove-circle' aria-hidden='true'></span></button>`)
+                    $(".noteText").append(note.body + "  " + `<button type='submit' id=${noteId} class='btn btn-primary deleteNote'>Delete Note</button>`)
                     $(".noteText").append("<hr>")
                 });
+                // <button type="button" class="btn btn-primary">Save changes</button>
+                // `<button type='button' class='btn btn-default deleteNote' id=${noteId} aria-label='Left Align'><span class='glyphicon glyphicon-remove-circle' aria-hidden='true'></span></button>`
             }
         })
     })
@@ -78,7 +80,7 @@ $(document).ready(function() {
         $.ajax({
             type: "DELETE", 
             url: `/deleteNote/${noteDeleteId}`,
-            success: location.reload();           
+            success: location.reload()           
         })
     })
 
