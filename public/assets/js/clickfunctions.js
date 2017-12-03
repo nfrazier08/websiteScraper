@@ -35,16 +35,13 @@ $(document).ready(function() {
             data: JSON.stringify(noteObj),
             dataType: 'json',
             contentType: 'application/json',
-            success: function(noteObj){
-                // console.log("AJAX HERE")
-                // console.log(thisSubmitId)
-                // console.log("THIS IS OBJ********")
-                // console.log(noteObj)
+            success: function(noteObj){                
                 $('#addedModal').modal('toggle')
                 $("#addedMessage").html("You've successfully added a note");
             }
         })
-        
+
+        //Clear note form
         $("#noteText").val("")
     })
 
@@ -57,11 +54,12 @@ $(document).ready(function() {
             url: `/readNotes/${thisArticleId}`, 
             success: function(notes){                                
                 notes.notes.forEach(note => {
-                    console.log("NOTES ID >>>>")
+                    // console.log("NOTES ID >>>>")
+                    console.log(notes)
                     const noteId = note._id;
                     console.log(note._id)
                     // console.log(note.body)                   
-                    $(".noteText").append(note.body + "\n" + `<button type='button' class='btn btn-default deleteNote' id=${noteId} aria-label='Left Align'><span class='glyphicon glyphicon-remove-circle' aria-hidden='true'></span></button>`)
+                    $(".noteText").append(note.body + " " + `<button type='button' class='btn btn-default deleteNote' id=${noteId} aria-label='Left Align'><span class='glyphicon glyphicon-remove-circle' aria-hidden='true'></span></button>`)
                     $(".noteText").append("<hr>")
                 });
             }
@@ -73,14 +71,14 @@ $(document).ready(function() {
 
 
     $(".noteText").on("click", ".deleteNote", function(){
-        console.log("can I?")
+        console.log("note deleted id")
         const noteDeleteId = $(this).attr('id')
         console.log(noteDeleteId);
         
         $.ajax({
-            type:"DELETE", 
+            type: "DELETE", 
             url: `/deleteNote/${noteDeleteId}`,
-            success: location.reload()
+            success: location.reload();           
         })
     })
 

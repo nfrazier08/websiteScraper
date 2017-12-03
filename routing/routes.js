@@ -33,13 +33,14 @@ module.exports = function (app) {
         })
     })
 
-    //Delete this article
+    //Delete this note
     app.delete("/deleteNote/:id", function(req, res){
         db.Note.findByIdAndRemove(req.params.id)
-        .then(function(){
-            console.log("delete note success")
+        .then(function(){        
+            console.log("delete note success")            
         })
     })
+    
 
     //Route to add note
     app.post("/addNote/:id", function(req, res){             
